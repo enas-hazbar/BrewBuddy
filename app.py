@@ -15,8 +15,8 @@ def create_app():
 
     # simple home route (optional)
     @app.route("/")
-    def home():
-        return "BrewBuddy is running!"
+    def contact():
+        return render_template("contact.html")
 
     return app
 

@@ -33,3 +33,10 @@ class Expense(db.Model):
     total_amount = db.Column(db.Float, default=0.0)
     date = db.Column(db.String(50))
     description = db.Column(db.String(200))
+class ContactMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(150), nullable=False)
+    message = db.Column(db.String(1000), nullable=False)
+    created_at = db.Column(db.String(50))
+

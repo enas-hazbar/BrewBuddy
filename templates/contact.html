@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Form</title>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("YOUR_PUBLIC_KEY"); // <-- replace this
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #1e2a38, #2e3e52);
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .contact-container {
+            width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        input, textarea {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: none;
+            border: 2px solid #fff;
+            color: #fff;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Contact Form</h1>
+
+    <div class="contact-container">
+        <form id="contact-form">
+
+            <input type="text" name="name" placeholder="Your Name" required>
+
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <input type="text" name="title" placeholder="Subject" required>
+
+            <textarea name="message" placeholder="Your Message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <p id="status"></p>
+    </div>
+
+    <!-- JS handling -->
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            emailjs.sendForm(
+                "YOUR_SERVICE_ID",   // <-- replace this
+                "YOUR_TEMPLATE_ID",  // <-- replace this
+                this
+            ).then(() => {
+                document.getElementById("status").innerText = "Message Sent Successfully!";
+            }).catch((err) => {
+                console.error("EmailJS Error:", err);
+                document.getElementById("status").innerText = "Failed to send message.";
+            });
+        });
+    </script>
+
+</body>
+</html>
