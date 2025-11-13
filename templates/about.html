@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 30px;
+  width: 1200px;
+}
+
+.container h1 {
+  margin-bottom: 10px;
+}
+
+.container p {
+  margin-bottom: 25px;
+  color: #666;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  justify-items: center;
+}
+
+.aboutbox {
+  border-radius: 10px;
+  width: 300px;
+  height: 300px;
+  box-shadow: 0 0 0 1px #666666;
+  background-color: #303030;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+  padding: 15px;
+}
+
+.aboutbox:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 5px #888;
+}
+
+.aboutbox img {
+  width: 200px;
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-top: 10px;
+}
+
+.aboutbox .title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.aboutbox .subtitle {
+  font-size: 16px;
+  color: #bbb;
+  margin-top: 10px;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>About Us</h1>
+    <p>Description</p>
+    <div class="grid">
+      <div class="aboutbox">
+        <img src="../static/guy.png" alt="Box 1 Image">
+        <div class="title">Hasan</div>
+        <div class="subtitle">Back end</div>
+      </div>
+      <div class="aboutbox">
+        <img src="../static/girl.png" alt="Box 2 Image">
+        <div class="title">Mirthe</div>
+        <div class="subtitle">Designer</div>
+      </div>
+      <div class="aboutbox">
+        <img src="../static/guy.png" alt="Box 3 Image">
+        <div class="title">Lucas</div>
+        <div class="subtitle">Back end</div>
+      </div>
+      <div class="aboutbox">
+        <img src="../static/girl.png" alt="Box 4 Image">
+        <div class="title">Enas</div>
+        <div class="subtitle">Front/Back end</div>
+      </div>
+      <div class="aboutbox">
+        <img src="../static/girl.png" alt="Box 5 Image">
+        <div class="title">Sueda</div>
+        <div class="subtitle">Front/Back end</div>
+      </div>
+      <div class="aboutbox">
+        <img src="../static/girl.png" alt="Box 6 Image">
+        <div class="title">Daniela</div>
+        <div class="subtitle">Front/Back end</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
