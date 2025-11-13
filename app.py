@@ -17,8 +17,12 @@ def create_app():
     @app.route("/")
     def home():
         return render_template("home.html")
-    return app
+  
 
+    @app.route('/contact')
+    def contact():
+        return render_template('contact.html')
+    return app
 # allow: python app.py to run the dev server
 if __name__ == "__main__":
     app = create_app()
