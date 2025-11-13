@@ -13,11 +13,10 @@ def create_app():
 
     db.init_app(app)
 
-    # simple home route (optional)
+    # Home route
     @app.route("/")
-    def contact():
-        return render_template("contact.html")
-
+    def home():
+        return render_template("home.html")
     return app
 
 # allow: python app.py to run the dev server
