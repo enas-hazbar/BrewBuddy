@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About Us | BrewBuddy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- VINTAGE FONTS: Rye + Vollkorn -->
+  <link href="https://fonts.googleapis.com/css2?family=Rye&family=Vollkorn:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --amber: #d97706;
+      --brown: #4b2e05;
+      --cream: #f5c891; /* warm orange background */
+      --charcoal: #2e2e2e;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: "Vollkorn", serif;
+    }
+
+    /* MAIN WRAPPER */
+    .about-wrapper {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* CARD */
+    .about-card {
+      background: #ffffff;
+      border-radius: 26px;
+      padding: 3rem;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.17);
+      position: relative;
+    }
+
+    /* TITLE */
+    .main-title {
+      font-family: "Rye", serif;
+      font-size: 4rem;
+      color: var(--brown);
+      margin-bottom: 1.2rem;
+      line-height: 1.05;
+      letter-spacing: 0.5px;
+    }
+
+    /* CONTENT LAYOUT */
+    .content-area {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 1rem;
+      align-items: flex-start;
+    }
+
+    /* IMAGE */
+    .about-image {
+      flex: 1;
+      margin-top: 3.5rem;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 18px;
+      object-fit: cover;
+      display: block;
+      filter: sepia(45%) contrast(1.1);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+    }
+
+    /* TEXT */
+    .about-text {
+      flex: 1.4;
+      display: flex;
+      flex-direction: column;
+      gap: 1.7rem;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      font-family: "Vollkorn", serif;
+    }
+
+    h2 {
+      font-family: "Vollkorn", serif;
+      font-size: 1.5rem;
+      color: var(--brown);
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+
+    ul {
+      padding-left: 1.3rem;
+      list-style-type: disc;
+      font-size: 1.05rem;
+    }
+
+    li {
+      margin: 0.25rem 0;
+    }
+
+    .highlight-box {
+      background: #ffe8c7;
+      border-left: 4px solid var(--amber);
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      margin-top: 0.3rem;
+      font-size: 1rem;
+    }
+
+    .footer-note {
+      margin-top: 0.4rem;
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .footer-note span {
+      color: var(--amber);
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .content-area {
+        flex-direction: column;
+      }
+      .about-image {
+        margin-top: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="about-wrapper">
+    <section class="about-card">
+
+      <h1 class="main-title">About Us</h1>
+
+      <div class="content-area">
+
+        <!-- IMAGE -->
+        <div class="about-image">
+          <img src="images/images.png" alt="Friends enjoying drinks">
+        </div>
+
+        <!-- TEXT -->
+        <div class="about-text">
+
+          <div>
+            <h2>Who We Are</h2>
+            <p>
+              We are a group of students who share a home and try to keep things simple and calm. 
+              We enjoy good drinks and time together and sometimes the fridge becomes confusing. 
+              BrewBuddy started because we wanted a home that feels more organized and friendly.
+            </p>
+          </div>
+
+          <div>
+            <h2>Our Mission</h2>
+            <p>
+              Our mission is to help everyone see what we have at home in an easy and natural way. 
+              No stress and no confusion. Just a clear view for everyone in the house.
+            </p>
+            <div class="highlight-box">
+              A calmer fridge and a nicer shared home for all of us.
+            </div>
+          </div>
+
+          <div>
+            <h2>Why We Created BrewBuddy</h2>
+            <p>
+              Drinks disappeared fast and nobody was sure what was left. 
+              Instead of guessing we wanted something small and helpful that fits student life. 
+              BrewBuddy came from that simple need.
+            </p>
+          </div>
+
+          <div>
+            <h2>What BrewBuddy Offers</h2>
+            <ul>
+              <li>Clear view of what is in stock</li>
+              <li>Simple tracking of what is used</li>
+              <li>Helps avoid running out of favorites</li>
+              <li>Shows low stock at the right time</li>
+              <li>Makes shared living easier and fair</li>
+            </ul>
+          </div>
+
+          <p class="footer-note">
+            BrewBuddy is made by students for students. 
+            <span>One shared fridge at a time.</span>
+          </p>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>
