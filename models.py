@@ -33,3 +33,5 @@ class Expense(db.Model):
     total_amount = db.Column(db.Float, default=0.0)
     date = db.Column(db.String(50))
     description = db.Column(db.String(200))
+
+

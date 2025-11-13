@@ -13,13 +13,16 @@ def create_app():
 
     db.init_app(app)
 
-    # simple home route (optional)
+    # Home route
     @app.route("/")
     def home():
-        return "BrewBuddy is running!"
+        return render_template("home.html")
+  
 
+    @app.route('/contact')
+    def contact():
+        return render_template('contact.html')
     return app
-
 # allow: python app.py to run the dev server
 if __name__ == "__main__":
     app = create_app()
