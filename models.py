@@ -2,8 +2,8 @@ from app import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(100))
+    user_name = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(200), nullable=False) 
     balance = db.Column(db.Float, default=0.0)
 
 class Drink(db.Model):
