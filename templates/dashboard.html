@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 <body>
   <nav>
     <a href="{{ url_for('logout') }}">Logout</a>
@@ -13,6 +16,482 @@
   <h1>Welcome, {{ username }}!</h1>
   <p>This is your dashboard page.</p>
 
-  <!-- You can add more content here -->
+
+  <style>
+    .flashcards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+      padding: 20px;
+    }
+
+    .flashcard-container {
+      perspective: 1000px;
+    }
+
+    .flashcard {
+      width: 300px;
+      height: 340px;
+      border-radius: 20px;
+      border: 10px solid #4b2e05;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(.68, -0.55, .27, 1.55);
+      position: relative;
+      background-color: #fff8e1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard .front,
+    .flashcard .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* Front layout preserves original top, middle, bottom alignment */
+    .flashcard .front {
+      padding: 10px;
+      justify-content: space-between;
+    }
+
+    .flashcard .top-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flashcard .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .flashcard .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    /* Back side */
+    .flashcard .back {
+      transform: rotateY(180deg);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 20px;
+    }
+
+    /* Maintain icon and image sizes */
+    .beerimage {
+      width: 160px;
+      height: 200px;
+    }
+
+    .plusminus {
+      width: 45px;
+      height: 45px;
+    }
+
+    .beercount {
+      font-size: 2.4rem;
+    }
+  </style>
+  <div class="flashcards-grid">
+    <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/girl.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Title</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>This is the description. Keep it centered and simple.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </body>
+
 </html>
