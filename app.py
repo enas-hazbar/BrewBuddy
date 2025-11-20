@@ -69,7 +69,6 @@ def create_app():
 
         user = User.query.filter_by(user_name=username).first()
 
-        # IMPORTANT: handle users with no password (Google login only)
         if not user or not user.password or not check_password_hash(user.password, password):
             flash("Invalid username or password")
             return redirect(url_for("home"))
@@ -82,7 +81,6 @@ def create_app():
 
     @app.route("/login/google")
     def google_login():
-        # Only for local development (HTTP); remove in production (use HTTPS)
         os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
         redirect_uri = url_for("google_callback", _external=True)
@@ -139,7 +137,6 @@ def create_app():
 
         credentials = flow.credentials
 
-        # Verify the ID token and get user info
         id_info = id_token.verify_oauth2_token(
             credentials._id_token,
             google_requests.Request(),
@@ -150,7 +147,6 @@ def create_app():
         google_id = id_info.get("sub")
         name = id_info.get("name")
 
-        # Check or create user
         user = User.query.filter_by(google_id=google_id).first()
 
         if not user:
@@ -208,7 +204,7 @@ def create_app():
         username = session["username"]
         return render_template("profile.html", username=username)
 
-    # -----------------------------------------
+    
 
     @app.route("/logout")
     def logout():

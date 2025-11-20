@@ -552,6 +552,12 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 40px rgba(0,0,0,0.45);
   animation: fadeInPop 0.35s ease-out;
 }
+.text-link{
+  color: var(--beer-gold);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 5px;
+}
 
 @keyframes fadeInPop {
   0% { transform: scale(0.85); opacity: 0; }
@@ -582,7 +588,7 @@ h1, h2, h3, h4 {
 }
 
 .input {
-  width: 100%;
+  width: 400px;
   padding: 13px;
   background: rgba(255,255,255,0.08);
   border: 1.8px solid rgba(255,255,255,0.18);
@@ -779,8 +785,8 @@ h1, h2, h3, h4 {
 
     /* Maintain icon and image sizes */
     .beerimage {
-      width: 160px;
-      height: 200px;
+      width: 120px;
+      height: 170px;
     }
 
     .plusminus {
@@ -790,5 +796,13 @@ h1, h2, h3, h4 {
 
     .beercount {
       font-size: 2.4rem;
+      color:var(--beer-orange);
+      font-weight: bold;
     }
-
+.Title {
+  color: #000;
+  font-size: 1.6rem;
+}
+.back p {
+  color: #000;
+}
