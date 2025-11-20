@@ -698,5 +698,97 @@ h1, h2, h3, h4 {
 .profile-icon:hover {
   transform: scale(1.1);
 }
+ .flashcards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-items: center;
+      padding: 20px;
+    }
 
+    .flashcard-container {
+      perspective: 1000px;
+    }
+
+    .flashcard {
+      width: 300px;
+      height: 340px;
+      border-radius: 20px;
+      border: 10px solid #4b2e05;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(.68, -0.55, .27, 1.55);
+      position: relative;
+      background-color: #fff8e1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .flashcard .front,
+    .flashcard .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      box-sizing: border-box;
+    }
+
+    /* Front layout preserves original top, middle, bottom alignment */
+    .flashcard .front {
+      padding: 10px;
+      justify-content: space-between;
+    }
+
+    .flashcard .top-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flashcard .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .flashcard .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    /* Back side */
+    .flashcard .back {
+      transform: rotateY(180deg);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-size: 1.2rem;
+      padding: 20px;
+    }
+
+    /* Maintain icon and image sizes */
+    .beerimage {
+      width: 160px;
+      height: 200px;
+    }
+
+    .plusminus {
+      width: 45px;
+      height: 45px;
+    }
+
+    .beercount {
+      font-size: 2.4rem;
+    }
 
