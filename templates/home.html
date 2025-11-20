@@ -38,7 +38,7 @@
           <a href="/">Home</a>
           <a href="#aboutus">About Us</a>
           <a href="#contact">Contact Us</a>
-          <a href="#" class="profile-icon">
+          <a id="navbar-get-started" class="profile-icon">
             <!-- Profile SVG -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path d="M256 256c70.692 0 128-57.308 128-128S326.692 0 256 0 128 57.308 128 128s57.308 128 128 128zm0 32c-70.692 0-256 35.346-256 106.667V512h512v-117.333C512 323.346 326.692 288 256 288z"/>
@@ -47,16 +47,16 @@
         </div>
       </nav>
       <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" id="hero">
             <div class="hero-content">
             <h1 class="hero-title">Manage the beers</h1>
             <p class="hero-subtitle">Discover great brews, resolve the conflicts, share the experience </p>
-            <a href="#" class="cta-button">Get Started</a>
+            <a class="cta-button" id="get-started-btn">Get Started</a>
             </div>
         </section>
-         <main class="about-wrapper">
-    <section id="aboutus" class="about-card">
- 
+         <main class="about-wrapper" id="about">
+    <section class="about-card">
+
       <h1 class="main-title">About Us</h1>
  
       <div class="content-area">
@@ -190,12 +190,76 @@ Need help or found a bug? Send us a message and we will respond as soon as possi
   <footer style="background-color:#b69576; color:#fff; text-align:center; padding:20px;">
   <p>© 2025 BrewBuddy Team. All rights reserved.</p>
   <nav>
-    <a href="index.html" style="color:#fff; margin:0 10px;">Home</a>
-    <a href="about.html" style="color:#fff; margin:0 10px;">About</a>
-    <a href="contact.html" style="color:#fff; margin:0 10px;">Contact</a>
+    <a href="#hero" style="color:#fff; margin:0 10px;">Home</a>
+    <a href="#about" style="color:#fff; margin:0 10px;">About</a>
+    <a href="#contact" style="color:#fff; margin:0 10px;">Contact</a>
   </nav>
 </footer>
-</sectio>
+</section>
+<!-- SIGN IN POPUP -->
+<section class="signup-section" id="signin-section">
+  <div class="login-box">
+    <div class="inner-box">
+
+      <img src="{{ url_for('static', filename='beer-1858.svg') }}" width="70" height="70" class="logo">
+
+      <div class="title">Sign In</div>
+
+      <div class="describtion">
+        Enter your login details to continue.
+      </div>
+      <div class="inner-box">
+      <form action="/login" method="POST">
+        <input class="input" type="text" name="username" placeholder="Enter Username" required>
+        <input class="input" type="password" name="password" placeholder="Enter Password" required>
+        <button class="continue" type="submit">Log In</button>
+      </form>
+      </div>
+      <a href="#" id="go-to-signup" class="text-link">I don’t have an account</a>
+      <a href="{{ url_for('google_login') }}" class="google-btn">
+<img src="{{ url_for('static', filename='icons8-google.svg') }}">
+  Sign in with Google
+</a>
+
+      <a href="#" class="no-account" id="close-signin">Close</a>
+
+    </div>
+  </div>
+</section>
+
+<!-- SIGN UP POPUP -->
+<section class="signup-section" id="signup-section">
+  <div class="login-box">
+    <div class="inner-box">
+
+      <img src="{{ url_for('static', filename='beer-1858.svg') }}"
+           width="70" height="70" class="logo">
+
+      <div class="title">Sign Up</div>
+
+      <div class="describtion">
+        Enter your login details to continue.
+      </div>
+      <div class="inner-box">
+      <form action="/register" method="POST">
+        <input class="input" type="text" name="username" placeholder="Enter Username" required>
+        <input class="input" type="password" name="password" placeholder="Enter Password" required>
+        <input class="input" type="password" name="repeat_password" placeholder="Repeat Password" required>
+        <button class="continue" type="submit">Save</button>
+      </form>
+      </div>
+      <a href="{{ url_for('google_login') }}" class="google-btn">
+<img src="{{ url_for('static', filename='icons8-google.svg') }}">
+  Sign in with Google
+</a>
+
+      <a href="#" id="go-to-signin" class="no-account">Go back</a>
+      <a href="#" id="close-signup" class="no-account">Close</a>
+
+    </div>
+  </div>
+</section>
+
 </body>
 </html>
 <script>
@@ -225,5 +289,42 @@ Need help or found a bug? Send us a message and we will respond as soon as possi
     setTimeout(() => {
       document.getElementById("statusMessage").textContent = "";
     }, 4000);
+  });
+  const openBtn = document.getElementById("get-started-btn");
+
+  // Popups
+  const signinPopup = document.getElementById("signin-section");
+  const signupPopup = document.getElementById("signup-section");
+  
+  const navbarBtn = document.getElementById("navbar-get-started");
+  navbarBtn.addEventListener("click", () => {
+    signinPopup.style.display = "flex";
+    document.body.classList.add("modal-open");
+  });  
+
+  // Open Sign In
+  openBtn.addEventListener("click", () => {
+    signinPopup.style.display = "flex";
+    document.body.classList.add("modal-open");
+  });
+  
+  // Close buttons
+  document.getElementById("close-signin").addEventListener("click", () => {
+    signinPopup.style.display = "none";
+    document.body.classList.remove("modal-open");
+  });
+  document.getElementById("close-signup").addEventListener("click", () => {
+    signupPopup.style.display = "none";
+    document.body.classList.remove("modal-open");
+  });
+  
+  // Switch between Sign In and Sign Up
+  document.getElementById("go-to-signup").addEventListener("click", () => {
+    signinPopup.style.display = "none";
+    signupPopup.style.display = "flex";
+  });
+  document.getElementById("go-to-signin").addEventListener("click", () => {
+    signupPopup.style.display = "none";
+    signinPopup.style.display = "flex";
   });
 </script>

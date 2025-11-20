@@ -1,10 +1,14 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()  
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(50), nullable=False)
-    password = db.Column(db.String(200), nullable=False) 
+    user_name = db.Column(db.String(50), nullable=False, unique=True)
+    # password is optional now (Google users may not have one)
+    password = db.Column(db.String(200), nullable=True)
+    google_id = db.Column(db.String(255), unique=True)
     balance = db.Column(db.Float, default=0.0)
+
 
 class Drink(db.Model):
     id = db.Column(db.Integer, primary_key=True)
