@@ -183,6 +183,33 @@ def create_app():
         username = session["username"]
         return render_template("dashboard.html", username=username)
 
+
+    @app.route("/favourites")
+    def favourites():
+        if "user_id" not in session:
+            flash("Please log in first")
+            return redirect(url_for("home"))
+        username = session["username"]
+        return render_template("favourites.html", username=username)
+
+    @app.route("/basket")
+    def basket():
+        if "user_id" not in session:
+            flash("Please log in first")
+            return redirect(url_for("home"))
+        username = session["username"]
+        return render_template("basket.html", username=username)
+
+    @app.route("/profile")
+    def profile():
+        if "user_id" not in session:
+            flash("Please log in first")
+            return redirect(url_for("home"))
+        username = session["username"]
+        return render_template("profile.html", username=username)
+
+    # -----------------------------------------
+
     @app.route("/logout")
     def logout():
         session.clear()
@@ -190,6 +217,7 @@ def create_app():
         return redirect(url_for("home"))
 
     return app
+
 
 if __name__ == "__main__":
     app = create_app()
