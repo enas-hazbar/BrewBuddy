@@ -669,9 +669,34 @@ h1, h2, h3, h4 {
   transform: translateY(-2px);
 }
 
-.text-link {
-  color: var(--beer-gold);
-  text-decoration: underline;
-  cursor: pointer;
-  margin-top: 5px;
+/* Optional: subtle shadow on hover for Sign In / Sign Up buttons */
+.login-box .inner-box button.continue:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
+.inner-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* keep spacing consistent */
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon svg {
+  width: 100%;
+  height: auto;
+  fill: var(--beer-orange);
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+}
+
+
