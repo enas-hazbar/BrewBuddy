@@ -675,3 +675,24 @@ body.modal-open {
   flex-direction: column;
   gap: 10px; /* keep spacing consistent */
 }
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon svg {
+  width: 100%;
+  height: auto;
+  fill: var(--beer-orange);
+}
+
+.profile-icon:hover {
+  transform: scale(1.1);
+}
+
