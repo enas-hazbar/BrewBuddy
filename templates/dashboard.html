@@ -1,118 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <title>Dashboard</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
-
 <body>
-  <nav>
-    <a href="{{ url_for('logout') }}">Logout</a>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="/" class="beer-logo">
+        <!-- Beer SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <g transform="translate(1.4 1.4) scale(2.8 2.8)">
+            <path d="M 73.655 30.91 H 60.714 v -3.301 l -47.241 0.602 v 57.88 c 0 2.159 1.75 3.91 3.91 3.91 h 39.422 c 2.159 0 3.91 -1.75 3.91 -3.91 V 70.91 h 12.941 c 3.907 0 7.074 -3.255 7.074 -7.271 V 38.181 C 80.729 34.165 77.562 30.91 73.655 30.91 z M 74.572 61.703 c 0 1.71 -1.386 3.097 -3.097 3.097 l -10.761 -0.135 V 37.021 h 10.761 c 1.71 0 3.097 1.386 3.097 3.097 V 61.703 z" fill="#ffde55"/>
+            <path d="M 37.094 81.493 c -0.552 0 -1 -0.447 -1 -1 v -38.65 c 0 -0.552 0.448 -1 1 -1 s 1 0.448 1 1 v 38.65 C 38.094 81.046 37.646 81.493 37.094 81.493 z" fill="#ffa941"/>
+            <path d="M 49.315 81.493 c -0.553 0 -1 -0.447 -1 -1 V 51.479 c 0 -0.553 0.447 -1 1 -1 s 1 0.447 1 1 v 29.015 C 50.315 81.046 49.868 81.493 49.315 81.493 z" fill="#ffa941"/>
+            <path d="M 24.871 81.493 c -0.552 0 -1 -0.447 -1 -1 V 48.789 c 0 -0.553 0.448 -1 1 -1 s 1 0.447 1 1 v 31.704 C 25.871 81.046 25.423 81.493 24.871 81.493 z" fill="#ffa941"/>
+            <path d="M 66.994 20.016 c 0 -7.256 -5.882 -13.138 -13.138 -13.138 c -2.183 0 -4.237 0.54 -6.048 1.483 C 46.29 3.516 41.766 0 36.42 0 c -5.073 0 -9.396 3.171 -11.123 7.636 c -0.453 -0.042 -0.911 -0.069 -1.375 -0.069 c -8.091 0 -14.651 6.559 -14.651 14.651 c 0 0.051 0.007 0.101 0.008 0.152 H 9.271 v 31.34 c 0 2.34 1.897 4.237 4.237 4.237 s 4.237 -1.897 4.237 -4.237 V 39.4 c 0 2.34 1.897 4.237 4.237 4.237 c 2.34 0 4.237 -1.897 4.237 -4.237 v -2.733 c 3.382 -0.536 6.383 -2.21 8.577 -4.642 c 1.757 2.232 4.476 3.67 7.537 3.67 c 1.36 0 2.647 -0.292 3.818 -0.804 v 5.693 c 0 2.34 1.897 4.237 4.237 4.237 c 2.34 0 4.237 -1.897 4.237 -4.237 v -7.469 C 61.521 32.714 66.994 27.012 66.994 20.016 z" fill="#f9f9f9"/>
+          </g>
+        </svg>
+        <span class="logo-text">BrewBuddy</span>
+      </a>
+    </div>
+
+    <!-- Hamburger menu for mobile -->
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">&#9776;</label>
+
+    <div class="nav-right">
+
+      <!-- Dashboard -->
+      <a class="profile-icon" href="{{ url_for('dashboard') }}">
+          <svg viewBox="0 0 24 24">
+              <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+      </a>
+  
+      <!-- Favourites -->
+      <a class="profile-icon" href="{{ url_for('favourites') }}">
+          <svg viewBox="0 0 24 24">
+              <path d="M12 21s-6.716-4.756-9.33-8.364C.676 9.006 1.165 5.5 3.624 3.647c2.104-1.593 5.19-1.252 6.923.884L12 6l1.453-1.47c1.733-2.136 4.819-2.477 6.923-.884 2.459 1.853 2.948 5.359.954 8.989C18.716 16.244 12 21 12 21z"/>
+          </svg>
+      </a>
+  
+      <!-- Basket -->
+      <a class="profile-icon" href="{{ url_for('basket') }}">
+          <svg viewBox="0 0 24 24">
+              <path d="M6 9l3-6h6l3 6h4l-3 12H5L2 9h4zm3 0h6M9 13v4m6-4v4"/>
+          </svg>
+      </a>
+  
+      <!-- Profile -->
+      <a class="profile-icon" href="{{ url_for('profile') }}">
+          <svg viewBox="0 0 512 512">
+              <path d="M256 256c70.692 0 128-57.308 128-128S326.692 0 256 0 128 57.308 128 128s57.308 128 128 128zm0 32c-70.692 0-256 35.346-256 106.667V512h512v-117.333C512 323.346 326.692 288 256 288z"/>
+          </svg>
+      </a>
+  
+  </div>
+   
   </nav>
-
-  <h1>Welcome, {{ username }}!</h1>
-  <p>This is your dashboard page.</p>
-
-
-  <style>
-    .flashcards-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      justify-items: center;
-      padding: 20px;
-    }
-
-    .flashcard-container {
-      perspective: 1000px;
-    }
-
-    .flashcard {
-      width: 300px;
-      height: 340px;
-      border-radius: 20px;
-      border: 10px solid #4b2e05;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      transition: transform 0.8s cubic-bezier(.68, -0.55, .27, 1.55);
-      position: relative;
-      background-color: #fff8e1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .flashcard.flipped {
-      transform: rotateY(180deg);
-    }
-
-    .flashcard .front,
-    .flashcard .back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      display: flex;
-      flex-direction: column;
-      box-sizing: border-box;
-    }
-
-    /* Front layout preserves original top, middle, bottom alignment */
-    .flashcard .front {
-      padding: 10px;
-      justify-content: space-between;
-    }
-
-    .flashcard .top-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .flashcard .main-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-    }
-
-    .flashcard .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: auto;
-    }
-
-    /* Back side */
-    .flashcard .back {
-      transform: rotateY(180deg);
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-size: 1.2rem;
-      padding: 20px;
-    }
-
-    /* Maintain icon and image sizes */
-    .beerimage {
-      width: 160px;
-      height: 200px;
-    }
-
-    .plusminus {
-      width: 45px;
-      height: 45px;
-    }
-
-    .beercount {
-      font-size: 2.4rem;
-    }
-  </style>
-  <div class="flashcards-grid">
+ <div class="flashcards-grid">
     <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
@@ -489,9 +437,390 @@
         </div>
       </div>
     </div>
+  
+
+  <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 9Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/amstel.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Amstel Pilsener</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A simple, smooth pilsner with a tiny bit of bitterness.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 10Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/Corona-Premier.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Corona Premier</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A light and smooth beer that’s super easy to drink.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 11Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/hertog jan.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Hertog Jan</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A fuller Dutch pilsner with a richer taste than most.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 12Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/bud light.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Bud Light</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A very light lager that’s clean and easy to sip.</p>
+        </div>
+      </div>
+    </div>
+
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 13Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/guinness.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Guinness</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A creamy dark beer with a deep roasted flavour.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 14Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/heineken.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Heineken</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A non-alcoholic option that still tastes fresh and balanced.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 15Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/miller.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Miller Lite</div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A crisp, low-calorie lager made for easy drinking.</p>
+        </div>
+      </div>
+    </div>
+
+        <div class="flashcard-container">
+      <div class="flashcard" onclick="this.classList.toggle('flipped')">
+        <!-- 16Front -->
+        <div class="front">
+          <div class="top-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
+              <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
+            </svg>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+              <path
+                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+            </svg>
+          </div>
+
+          <div class="main-container">
+            <img class="beerimage" src="../static/grolsh.png" alt="Test">
+            <div class="title-container">
+              <div class="Title">Grolsch </div>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
+            </svg>
+
+            <div class="beercount">30</div>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
+              viewBox="0 0 16 16">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8" />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Back -->
+        <div class="back">
+          <p>A refreshing pilsner with a clean, slightly hoppy taste.</p>
+        </div>
+      </div>
+    </div>
   </div>
-
-
+</div>
+  <section>
+    <footer style="background-color:#b69576; color:#fff; text-align:center; padding:20px;">
+    <p>© 2025 BrewBuddy Team. All rights reserved.</p>
+  </footer>
+  </section>
 </body>
-
 </html>

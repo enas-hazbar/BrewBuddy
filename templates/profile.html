@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="/" class="beer-logo">
+        <!-- Beer SVG -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+          <g transform="translate(1.4 1.4) scale(2.8 2.8)">
+            <path d="M 73.655 30.91 H 60.714 v -3.301 l -47.241 0.602 v 57.88 c 0 2.159 1.75 3.91 3.91 3.91 h 39.422 c 2.159 0 3.91 -1.75 3.91 -3.91 V 70.91 h 12.941 c 3.907 0 7.074 -3.255 7.074 -7.271 V 38.181 C 80.729 34.165 77.562 30.91 73.655 30.91 z M 74.572 61.703 c 0 1.71 -1.386 3.097 -3.097 3.097 l -10.761 -0.135 V 37.021 h 10.761 c 1.71 0 3.097 1.386 3.097 3.097 V 61.703 z" fill="#ffde55"/>
+            <path d="M 37.094 81.493 c -0.552 0 -1 -0.447 -1 -1 v -38.65 c 0 -0.552 0.448 -1 1 -1 s 1 0.448 1 1 v 38.65 C 38.094 81.046 37.646 81.493 37.094 81.493 z" fill="#ffa941"/>
+            <path d="M 49.315 81.493 c -0.553 0 -1 -0.447 -1 -1 V 51.479 c 0 -0.553 0.447 -1 1 -1 s 1 0.447 1 1 v 29.015 C 50.315 81.046 49.868 81.493 49.315 81.493 z" fill="#ffa941"/>
+            <path d="M 24.871 81.493 c -0.552 0 -1 -0.447 -1 -1 V 48.789 c 0 -0.553 0.448 -1 1 -1 s 1 0.447 1 1 v 31.704 C 25.871 81.046 25.423 81.493 24.871 81.493 z" fill="#ffa941"/>
+            <path d="M 66.994 20.016 c 0 -7.256 -5.882 -13.138 -13.138 -13.138 c -2.183 0 -4.237 0.54 -6.048 1.483 C 46.29 3.516 41.766 0 36.42 0 c -5.073 0 -9.396 3.171 -11.123 7.636 c -0.453 -0.042 -0.911 -0.069 -1.375 -0.069 c -8.091 0 -14.651 6.559 -14.651 14.651 c 0 0.051 0.007 0.101 0.008 0.152 H 9.271 v 31.34 c 0 2.34 1.897 4.237 4.237 4.237 s 4.237 -1.897 4.237 -4.237 V 39.4 c 0 2.34 1.897 4.237 4.237 4.237 c 2.34 0 4.237 -1.897 4.237 -4.237 v -2.733 c 3.382 -0.536 6.383 -2.21 8.577 -4.642 c 1.757 2.232 4.476 3.67 7.537 3.67 c 1.36 0 2.647 -0.292 3.818 -0.804 v 5.693 c 0 2.34 1.897 4.237 4.237 4.237 c 2.34 0 4.237 -1.897 4.237 -4.237 v -7.469 C 61.521 32.714 66.994 27.012 66.994 20.016 z" fill="#f9f9f9"/>
+          </g>
+        </svg>
+        <span class="logo-text">BrewBuddy</span>
+      </a>
+    </div>
+
+    <!-- Hamburger menu for mobile -->
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="hamburger">&#9776;</label>
+
+    <div class="nav-right">
+
+      <!-- Dashboard -->
+      <a class="profile-icon" href="{{ url_for('dashboard') }}">
+          <svg viewBox="0 0 24 24">
+              <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+      </a>
+  
+      <!-- Favourites -->
+      <a class="profile-icon" href="{{ url_for('favourites') }}">
+          <svg viewBox="0 0 24 24">
+              <path d="M12 21s-6.716-4.756-9.33-8.364C.676 9.006 1.165 5.5 3.624 3.647c2.104-1.593 5.19-1.252 6.923.884L12 6l1.453-1.47c1.733-2.136 4.819-2.477 6.923-.884 2.459 1.853 2.948 5.359.954 8.989C18.716 16.244 12 21 12 21z"/>
+          </svg>
+      </a>
+  
+      <!-- Basket -->
+      <a class="profile-icon" href="{{ url_for('basket') }}">
+          <svg viewBox="0 0 24 24">
+              <path d="M6 9l3-6h6l3 6h4l-3 12H5L2 9h4zm3 0h6M9 13v4m6-4v4"/>
+          </svg>
+      </a>
+  
+      <!-- Profile -->
+      <a class="profile-icon" href="{{ url_for('profile') }}">
+          <svg viewBox="0 0 512 512">
+              <path d="M256 256c70.692 0 128-57.308 128-128S326.692 0 256 0 128 57.308 128 128s57.308 128 128 128zm0 32c-70.692 0-256 35.346-256 106.667V512h512v-117.333C512 323.346 326.692 288 256 288z"/>
+          </svg>
+      </a>
+  
+  </div>
+
+  </nav>
+  <p>
+    Want to leave? 
+    <a href="{{ url_for('logout') }}">Logout</a>
+  </p>
+  <section>
+    <footer style="background-color:#b69576; color:#fff; text-align:center; padding:20px;">
+    <p>© 2025 BrewBuddy Team. All rights reserved.</p>
+  </footer>
+  </section>
+</body>
+</html>

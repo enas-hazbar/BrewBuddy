@@ -216,6 +216,11 @@ Need help or found a bug? Send us a message and we will respond as soon as possi
       </form>
       </div>
       <a href="#" id="go-to-signup" class="text-link">I don’t have an account</a>
+      <a href="{{ url_for('google_login') }}" class="google-btn">
+<img src="{{ url_for('static', filename='icons8-google.svg') }}">
+  Sign in with Google
+</a>
+
       <a href="#" class="no-account" id="close-signin">Close</a>
 
     </div>
@@ -243,6 +248,11 @@ Need help or found a bug? Send us a message and we will respond as soon as possi
         <button class="continue" type="submit">Save</button>
       </form>
       </div>
+      <a href="{{ url_for('google_login') }}" class="google-btn">
+<img src="{{ url_for('static', filename='icons8-google.svg') }}">
+  Sign in with Google
+</a>
+
       <a href="#" id="go-to-signin" class="no-account">Go back</a>
       <a href="#" id="close-signup" class="no-account">Close</a>
 
