@@ -4,10 +4,17 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), nullable=False, unique=True)
-    # password is optional now (Google users may not have one)
     password = db.Column(db.String(200), nullable=True)
     google_id = db.Column(db.String(255), unique=True)
     balance = db.Column(db.Float, default=0.0)
+
+    # New fields
+    name = db.Column(db.String(100), nullable=True)
+    email = db.Column(db.String(120), nullable=True)
+    phone = db.Column(db.String(20), nullable=True)
+    dob = db.Column(db.String(20), nullable=True)
+    profile_pic = db.Column(db.String(200), nullable=True)  # path to uploaded image
+    role = db.Column(db.String(20), default="User") 
 
 
 class Drink(db.Model):
