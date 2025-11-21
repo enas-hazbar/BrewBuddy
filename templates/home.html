@@ -46,14 +46,20 @@
           </a>
         </div>
       </nav>
-      <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-            <h1 class="hero-title">Manage the beers</h1>
-            <p class="hero-subtitle">Discover great brews, resolve the conflicts, share the experience </p>
-            <a class="cta-button" id="get-started-btn">Get Started</a>
-            </div>
-        </section>
+<!-- HERO SECTION -->
+<section class="hero" id="hero">
+
+    <!-- Floating Beer Bottle -->
+    <div class="hero-content">
+        <h1 class="hero-title">Manage the beers</h1>
+        <p class="hero-subtitle">Discover great brews, resolve the conflicts, share the experience</p>
+        <a class="cta-button" id="get-started-btn">Get Started</a>
+         <div class="floating-beer">
+      <img src="{{ url_for('static', filename='brewbuddy_beer.png') }}" alt="Beer Bottle">
+      </div>
+    </div>
+</section>
+
          <main class="about-wrapper" id="about">
     <section class="about-card">
 
@@ -89,7 +95,7 @@
             </div>
           </div>
  
-          <div>
+        <div class="centered-block">
             <h2>Why We Created BrewBuddy</h2>
             <p>
               Drinks disappeared fast and nobody was sure what was left.
@@ -98,9 +104,9 @@
             </p>
           </div>
  
-          <div>
+        <div class="centered-block">
             <h2>What BrewBuddy Offers</h2>
-            <ul>
+              <ul class="centered-list">
               <li>Clear view of what is in stock</li>
               <li>Simple tracking of what is used</li>
               <li>Helps avoid running out of favorites</li>
@@ -122,7 +128,7 @@
 <section class="team">
   <h1 class="main-title">Our Team</h1>
   <p class="team-description">
-    Meet the people behind BrewBuddy — a group of students who love coding, design, and great ideas.
+    Meet the people behind BrewBuddy :) a group of students who love coding, design, and great ideas.
   </p>
  
   <div class="team-grid">
@@ -187,12 +193,12 @@ Need help or found a bug? Send us a message and we will respond as soon as possi
   </div>
 </section>
 <sectio>
-  <footer style="background-color:#b69576; color:#fff; text-align:center; padding:20px;">
+  <footer style="background-color:#fbbe2491; color:#fff; text-align:center; padding:20px;">
   <p>© 2025 BrewBuddy Team. All rights reserved.</p>
   <nav>
-    <a href="#hero" style="color:#fff; margin:0 10px;">Home</a>
-    <a href="#about" style="color:#fff; margin:0 10px;">About</a>
-    <a href="#contact" style="color:#fff; margin:0 10px;">Contact</a>
+    <a href="#hero" style="color:#FFF8E1; margin:0 10px;   text-decoration: none; font-weight: 500; font-family: 'Inter', sans-serif;padding-bottom: 4px;transition: color 0.2s;">Home</a>
+    <a href="#about" style="color:#FFF8E1; margin:0 10px;   text-decoration: none; font-weight: 500; font-family: 'Inter', sans-serif;padding-bottom: 4px;transition: color 0.2s;">About</a>
+    <a href="#contact" style="color:#FFF8E1; margin:0 10px;   text-decoration: none; font-weight: 500; font-family: 'Inter', sans-serif;padding-bottom: 4px;transition: color 0.2s;">Contact</a>
   </nav>
 </footer>
 </section>
