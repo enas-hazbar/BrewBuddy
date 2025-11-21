@@ -35,7 +35,52 @@ h1, h2, h3, h4 {
     color: var(--beer-cream);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); 
   }
+.nav-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 0 1rem;
+}
 
+.nav-search input {
+  width: 100%;
+  max-width: 340px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 2px solid var(--beer-orange);
+  background-color: #fff8e1;
+  color: #2c1c05;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+}
+.nav-search {
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-search select {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 2px solid var(--beer-orange);
+  background-color: #fff8e1;
+  color: #2c1c05;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-search {
+    flex-direction: column;
+  }
+
+  .nav-search input,
+  .nav-search select {
+    max-width: 90%;
+  }
+}
 
 .nav-left a {
   display: flex;
