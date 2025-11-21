@@ -1,10 +1,11 @@
+# models.py
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()  
+db = SQLAlchemy()
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), nullable=False, unique=True)
-    # password is optional now (Google users may not have one)
     password = db.Column(db.String(200), nullable=True)
     google_id = db.Column(db.String(255), unique=True)
     balance = db.Column(db.Float, default=0.0)
@@ -17,12 +18,14 @@ class Drink(db.Model):
     threshold = db.Column(db.Integer, default=5)
     price = db.Column(db.Float, default=0.0)
 
+
 class Consumption(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     drink_id = db.Column(db.Integer, db.ForeignKey("drink.id"), nullable=False)
     amount = db.Column(db.Integer, default=1)
-    date = db.Column(db.String(50))  # keep it simple; can switch to DateTime later
+    date = db.Column(db.String(50))
+
 
 class ShoppingList(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,6 +33,7 @@ class ShoppingList(db.Model):
     quantity_needed = db.Column(db.Integer, default=0)
     created_at = db.Column(db.String(50))
     is_purchased = db.Column(db.Boolean, default=False)
+
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -39,3 +43,11 @@ class Expense(db.Model):
     description = db.Column(db.String(200))
 
 
+class Favourite(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    drink_key = db.Column(db.String(100), nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint("user_id", "drink_key", name="uix_user_drinkkey"),
+    )
