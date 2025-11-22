@@ -210,13 +210,38 @@ def create_app():
         username = session["username"]
         return render_template("basket.html", username=username)
 
-    @app.route("/profile")
+    @app.route("/profile", methods=["GET", "POST"])
     def profile():
         if "user_id" not in session:
             flash("Please log in first")
             return redirect(url_for("home"))
-        username = session["username"]
-        return render_template("profile.html", username=username)
+
+        user_id = session["user_id"]
+        user = User.query.get(user_id)
+
+        if request.method == "POST":
+            # Get form data
+            user.name = request.form.get("name")
+            user.email = request.form.get("email")
+            user.dob = request.form.get("dob")
+            user.phone = request.form.get("phone")
+
+            # Handle file upload
+            file = request.files.get("profile_pic")
+            if file and file.filename:
+                filename = f"user_{user.id}_{file.filename}"
+                upload_path = os.path.join("static", "uploads", filename)
+                os.makedirs(os.path.dirname(upload_path), exist_ok=True)
+                file.save(upload_path)
+                user.profile_pic = upload_path  # store path in database
+
+            db.session.commit()  # save changes
+            flash("Profile updated successfully!")
+            return redirect(url_for("profile"))
+
+        return render_template("profile.html", user=user)
+
+
 
     
 
