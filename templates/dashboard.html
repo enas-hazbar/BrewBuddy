@@ -23,6 +23,17 @@
       </a>
     </div>
 
+   <div class="nav-search">
+  <input type="text" id="beer-search" placeholder="Search beers...">
+
+  <select id="beer-filter">
+    <option value="all">All beers</option>
+    <option value="strong">Strong beer</option>
+    <option value="light">Light beer</option>
+    <option value="no-alcohol">Non-alcohol beer</option>
+  </select>
+</div>
+
     <!-- Hamburger menu for mobile -->
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="hamburger">&#9776;</label>
@@ -61,7 +72,7 @@
    
   </nav>
  <div class="flashcards-grid">
-    <div class="flashcard-container">
+    <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -108,7 +119,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -155,7 +166,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -202,7 +213,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -250,7 +261,7 @@
     </div>
 
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -297,7 +308,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -344,7 +355,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -391,7 +402,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -439,7 +450,7 @@
     </div>
   
 
-  <div class="flashcard-container">
+  <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 9Front -->
         <div class="front">
@@ -486,7 +497,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 10Front -->
         <div class="front">
@@ -533,7 +544,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 11Front -->
         <div class="front">
@@ -580,7 +591,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 12Front -->
         <div class="front">
@@ -628,7 +639,7 @@
     </div>
 
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 13Front -->
         <div class="front">
@@ -675,7 +686,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="no-alcohol">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 14Front -->
         <div class="front">
@@ -694,7 +705,7 @@
           <div class="main-container">
             <img class="beerimage" src="../static/heineken.png" alt="Test">
             <div class="title-container">
-              <div class="Title">Heineken</div>
+              <div class="Title">Heineken 0.0</div>
             </div>
           </div>
 
@@ -722,7 +733,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 15Front -->
         <div class="front">
@@ -769,7 +780,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 16Front -->
         <div class="front">
@@ -816,11 +827,51 @@
       </div>
     </div>
   </div>
-</div>
+
   <section>
     <footer style="background-color:#b69576; color:#fff; text-align:center; padding:20px;">
     <p>© 2025 BrewBuddy Team. All rights reserved.</p>
   </footer>
   </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const searchInput   = document.getElementById('beer-search');
+    const filterSelect  = document.getElementById('beer-filter');
+    const cards         = document.querySelectorAll('.flashcard-container');
+
+    function applyFilters() {
+      const term        = (searchInput?.value || '').toLowerCase();
+      const filterValue = filterSelect ? filterSelect.value : 'all';
+
+      cards.forEach(card => {
+        const title    = card.querySelector('.Title')?.textContent.toLowerCase() || '';
+        const backText = card.querySelector('.back p')?.textContent.toLowerCase() || '';
+        const category = card.dataset.category || '';
+
+        const matchesSearch =
+          term === '' ||
+          title.includes(term) ||
+          backText.includes(term);
+
+        const matchesFilter =
+          filterValue === 'all' ||
+          category === filterValue;   // 'strong', 'light', or 'no-alcohol'
+
+        card.style.display = (matchesSearch && matchesFilter) ? '' : 'none';
+      });
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', applyFilters);
+    }
+
+    if (filterSelect) {
+      filterSelect.addEventListener('change', applyFilters);
+    }
+
+    // Run once on load so everything is correct initially
+    applyFilters();
+  });
+</script>
 </body>
 </html>
