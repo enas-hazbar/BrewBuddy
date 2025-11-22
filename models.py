@@ -8,6 +8,14 @@ class User(db.Model):
     google_id = db.Column(db.String(255), unique=True)
     balance = db.Column(db.Float, default=0.0)
 
+    # New fields
+    name = db.Column(db.String(100), nullable=True)
+    email = db.Column(db.String(120), nullable=True)
+    phone = db.Column(db.String(20), nullable=True)
+    dob = db.Column(db.String(20), nullable=True)
+    profile_pic = db.Column(db.String(200), nullable=True)  # path to uploaded image
+    role = db.Column(db.String(20), default="User") 
+
 
 class Drink(db.Model):
     id = db.Column(db.Integer, primary_key=True)
