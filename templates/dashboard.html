@@ -1,3 +1,4 @@
+<!-- dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,6 @@
   <nav class="navbar">
     <div class="nav-left">
       <a href="/" class="beer-logo">
-        <!-- Beer SVG -->
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
           <g transform="translate(1.4 1.4) scale(2.8 2.8)">
             <path d="M 73.655 30.91 H 60.714 v -3.301 l -47.241 0.602 v 57.88 c 0 2.159 1.75 3.91 3.91 3.91 h 39.422 c 2.159 0 3.91 -1.75 3.91 -3.91 V 70.91 h 12.941 c 3.907 0 7.074 -3.255 7.074 -7.271 V 38.181 C 80.729 34.165 77.562 30.91 73.655 30.91 z M 74.572 61.703 c 0 1.71 -1.386 3.097 -3.097 3.097 l -10.761 -0.135 V 37.021 h 10.761 c 1.71 0 3.097 1.386 3.097 3.097 V 61.703 z" fill="#ffde55"/>
@@ -34,64 +34,64 @@
   </select>
 </div>
 
-    <!-- Hamburger menu for mobile -->
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="hamburger">&#9776;</label>
 
     <div class="nav-right">
-
-      <!-- Dashboard -->
       <a class="profile-icon" href="{{ url_for('dashboard') }}">
           <svg viewBox="0 0 24 24">
               <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
           </svg>
       </a>
-  
-      <!-- Favourites -->
+
       <a class="profile-icon" href="{{ url_for('favourites') }}">
           <svg viewBox="0 0 24 24">
               <path d="M12 21s-6.716-4.756-9.33-8.364C.676 9.006 1.165 5.5 3.624 3.647c2.104-1.593 5.19-1.252 6.923.884L12 6l1.453-1.47c1.733-2.136 4.819-2.477 6.923-.884 2.459 1.853 2.948 5.359.954 8.989C18.716 16.244 12 21 12 21z"/>
           </svg>
       </a>
-  
-      <!-- Basket -->
+
       <a class="profile-icon" href="{{ url_for('basket') }}">
           <svg viewBox="0 0 24 24">
               <path d="M6 9l3-6h6l3 6h4l-3 12H5L2 9h4zm3 0h6M9 13v4m6-4v4"/>
           </svg>
       </a>
-  
-      <!-- Profile -->
+
       <a class="profile-icon" href="{{ url_for('profile') }}">
           <svg viewBox="0 0 512 512">
               <path d="M256 256c70.692 0 128-57.308 128-128S326.692 0 256 0 128 57.308 128 128s57.308 128 128 128zm0 32c-70.692 0-256 35.346-256 106.667V512h512v-117.333C512 323.346 326.692 288 256 288z"/>
           </svg>
       </a>
-  
-  </div>
-   
+    </div>
   </nav>
- <div class="flashcards-grid">
+
+  <div class="flashcards-grid">
+    {% for beer in beers %}
     <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
-        <!-- Front -->
         <div class="front">
           <div class="top-container">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 60 60">
               <circle cx="30" cy="30" r="28" stroke="#d97706" stroke-width="4" fill="transparent" />
             </svg>
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
-              <path
-                d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
-                fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
-            </svg>
+            <button
+              class="heart-button {% if beer.key in fav_keys %}active{% endif %}"
+              type="button"
+              data-key="{{ beer.key }}"
+              aria-label="Toggle favourite"
+            >
+              <svg class="heart-icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-2 -2 20 20">
+                <path
+                  d="M8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.171C12.72-3.042 23.333 4.867 8 15z"
+                  fill="transparent" stroke="#FF4D6D" stroke-width="1.5" />
+              </svg>
+            </button>
           </div>
 
           <div class="main-container">
-            <img class="beerimage" src="../static/BeerIcons/Bockbier.png" alt="Test">
+            <img class="beerimage" src="{{ beer.image }}" alt="{{ beer.name }}">
             <div class="title-container">
-              <div class="Title">Hertog Jan</div>
+              <div class="Title">{{ beer.name }}</div>
             </div>
           </div>
 
@@ -102,7 +102,7 @@
                 d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
             </svg>
 
-            <div class="beercount">30</div>
+            <div class="beercount">{{ beer.count }}</div>
 
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#d97706" class="bi bi-dash-circle"
               viewBox="0 0 16 16">
@@ -112,14 +112,13 @@
           </div>
         </div>
 
-        <!-- Back -->
         <div class="back">
-          <p>Dark, malty, caramel-forward with low bitterness.</p>
+          <p>{{ beer.description }}</p>
         </div>
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="strong">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -166,7 +165,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -213,7 +212,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="strong">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -261,7 +260,7 @@
     </div>
 
 
-        <div class="flashcard-container" data-category="strong">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -308,7 +307,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -355,7 +354,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="strong">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -402,7 +401,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -450,7 +449,7 @@
     </div>
   
 
-  <div class="flashcard-container" data-category="light">
+  <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 9Front -->
         <div class="front">
@@ -497,7 +496,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 10Front -->
         <div class="front">
@@ -544,7 +543,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 11Front -->
         <div class="front">
@@ -591,7 +590,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 12Front -->
         <div class="front">
@@ -639,7 +638,7 @@
     </div>
 
 
-        <div class="flashcard-container" data-category="strong">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 13Front -->
         <div class="front">
@@ -686,7 +685,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="no-alcohol">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 14Front -->
         <div class="front">
@@ -705,7 +704,7 @@
           <div class="main-container">
             <img class="beerimage" src="../static/heineken.png" alt="Test">
             <div class="title-container">
-              <div class="Title">Heineken 0.0</div>
+              <div class="Title">Heineken</div>
             </div>
           </div>
 
@@ -733,7 +732,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 15Front -->
         <div class="front">
@@ -780,7 +779,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container" data-category="light">
+        <div class="flashcard-container">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 16Front -->
         <div class="front">
@@ -830,8 +829,8 @@
 
   <section>
     <footer style="background-color:#b69576; color:#fff; text-align:center; padding:20px;">
-    <p>© 2025 BrewBuddy Team. All rights reserved.</p>
-  </footer>
+      <p>© 2025 BrewBuddy Team. All rights reserved.</p>
+    </footer>
   </section>
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -873,5 +872,28 @@
     applyFilters();
   });
 </script>
+
+  <script>
+    document.querySelectorAll(".heart-button").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        const key = btn.dataset.key;
+
+        try {
+          const res = await fetch("/api/favourites/toggle", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ drink_key: key })
+          });
+
+          if (!res.ok) return;
+          const data = await res.json();
+          btn.classList.toggle("active", data.favourited);
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    });
+  </script>
 </body>
 </html>

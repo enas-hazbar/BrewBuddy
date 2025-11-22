@@ -1,6 +1,8 @@
+# models.py
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()  
+db = SQLAlchemy()
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(50), nullable=False, unique=True)
@@ -24,6 +26,7 @@ class Drink(db.Model):
     threshold = db.Column(db.Integer, default=5)
     price = db.Column(db.Float, default=0.0)
 
+
 class Consumption(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
@@ -38,6 +41,7 @@ class ShoppingList(db.Model):
     created_at = db.Column(db.String(50))
     is_purchased = db.Column(db.Boolean, default=False)
 
+
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
@@ -46,3 +50,11 @@ class Expense(db.Model):
     description = db.Column(db.String(200))
 
 
+class Favourite(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    drink_key = db.Column(db.String(100), nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint("user_id", "drink_key", name="uix_user_drinkkey"),
+    )
