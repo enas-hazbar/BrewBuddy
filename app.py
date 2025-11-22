@@ -8,6 +8,7 @@ from google_auth_oauthlib.flow import Flow
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
@@ -41,26 +42,39 @@ def create_app():
         password = request.form.get("password")
         repeat_password = request.form.get("repeat_password")
 
+        import re
+
         if not username or not password:
-            flash("Username and password required")
-            return redirect(url_for("home"))
+            return render_template("home.html", signup_error="Username and password required", open_signup=True)
 
         if password != repeat_password:
-            flash("Passwords do not match")
-            return redirect(url_for("home"))
+            return render_template("home.html", signup_error="Passwords do not match", open_signup=True)
 
-        # check if user already exists
+        if len(password) < 8 or \
+        not re.search(r"[A-Z]", password) or \
+        not re.search(r"[a-z]", password) or \
+        not re.search(r"[0-9]", password) or \
+        not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password):
+
+            return render_template(
+                "home.html",
+                signup_error="Password must include 8 chars, uppercase, lowercase, number & special symbol.",
+                open_signup=True
+            )
+
         existing = User.query.filter_by(user_name=username).first()
         if existing:
-            flash("This username is already taken")
-            return redirect(url_for("home"))
+            return render_template("home.html", signup_error="This username is already taken", open_signup=True)
 
         hashed_password = generate_password_hash(password)
         new_user = User(user_name=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        flash("User registered successfully!")
-        return redirect(url_for("home"))
+
+        session["user_id"] = new_user.id
+        session["username"] = new_user.user_name
+
+        return redirect(url_for("dashboard"))
 
     @app.route("/login", methods=["POST"])
     def login():
