@@ -34,6 +34,7 @@
   </select>
 </div>
 
+    <!-- Hamburger menu for mobile -->
     <input type="checkbox" id="menu-toggle" />
     <label for="menu-toggle" class="hamburger">&#9776;</label>
 
@@ -67,6 +68,8 @@
   <div class="flashcards-grid">
     {% for beer in beers %}
     <div class="flashcard-container"data-category="strong">
+ <div class="flashcards-grid">
+    <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <div class="front">
           <div class="top-container">
@@ -261,6 +264,7 @@
 
 
         <div class="flashcard-container"  data-category="strong">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -704,7 +708,7 @@
           <div class="main-container">
             <img class="beerimage" src="../static/heineken.png" alt="Test">
             <div class="title-container">
-              <div class="Title">Heineken</div>
+              <div class="Title">Heineken 0.0</div>
             </div>
           </div>
 
