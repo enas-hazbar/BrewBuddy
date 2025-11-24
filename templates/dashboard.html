@@ -66,7 +66,7 @@
 
   <div class="flashcards-grid">
     {% for beer in beers %}
-    <div class="flashcard-container" data-category="strong">
+    <div class="flashcard-container"data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <div class="front">
           <div class="top-container">
@@ -118,7 +118,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -165,7 +165,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -212,7 +212,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -260,7 +260,7 @@
     </div>
 
 
-        <div class="flashcard-container">
+        <div class="flashcard-container"  data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -307,7 +307,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -354,7 +354,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -401,7 +401,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- Front -->
         <div class="front">
@@ -449,7 +449,7 @@
     </div>
   
 
-  <div class="flashcard-container">
+  <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 9Front -->
         <div class="front">
@@ -496,7 +496,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 10Front -->
         <div class="front">
@@ -543,7 +543,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 11Front -->
         <div class="front">
@@ -590,7 +590,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 12Front -->
         <div class="front">
@@ -638,7 +638,7 @@
     </div>
 
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="strong">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 13Front -->
         <div class="front">
@@ -685,7 +685,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="no-alcohol">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 14Front -->
         <div class="front">
@@ -732,7 +732,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 15Front -->
         <div class="front">
@@ -779,7 +779,7 @@
       </div>
     </div>
 
-        <div class="flashcard-container">
+        <div class="flashcard-container" data-category="light">
       <div class="flashcard" onclick="this.classList.toggle('flipped')">
         <!-- 16Front -->
         <div class="front">
@@ -825,6 +825,7 @@
         </div>
       </div>
     </div>
+    {% endfor %}
   </div>
 
   <section>
