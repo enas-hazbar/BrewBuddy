@@ -22,6 +22,8 @@ class User(db.Model):
 class Drink(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    image = db.column(db.String(200), nullable=True)
+    description = db.Column(db.String(200))
     quantity = db.Column(db.Integer, default=0)
     threshold = db.Column(db.Integer, default=5)
     price = db.Column(db.Float, default=0.0)
