@@ -1,7 +1,6 @@
 # 🍺 **BrewBuddy – Beverage Manager for Student Houses**
 
 A group project by Team BrewBuddy
-
 ---
 
 ## 📌 **Overview**
@@ -197,11 +196,4 @@ Required:
 
 This project is created for educational purposes by students at **Fontys ICT**.
 
-
----
-
-If you want, I can also make:
-✅ A shorter version
-✅ A more technical version
-✅ A more visual README (with emojis, icons)
 Just tell me!
