@@ -1,8 +1,5 @@
 # 🍺 **BrewBuddy – Beverage Manager for Student Houses**
 
-A group project by Team BrewBuddy
----
-
 ## 📌 **Overview**
 
 BrewBuddy is a website designed to help students living together manage their shared drink inventory.
