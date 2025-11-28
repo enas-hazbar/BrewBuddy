@@ -188,9 +188,6 @@ Required:
 | Daniela | Frontend + Backend               |
 
 ---
-
 ## 📝 **License**
 
 This project is created for educational purposes by students at **Fontys ICT**.
-
-Just tell me!
